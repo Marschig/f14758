@@ -1,0 +1,9 @@
+# Created by .ignore support plugin (hsz.mobi)
+.gitignore
+.idea/
+.phalcon/
+app/library/
+app/views/layouts/
+public/files/
+public/img/
+public/temp/
