@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Phalcon PHP Framework</title>
-    <link rel="stylesheet" href="<?php echo $this->url->get('css/bootstrap.min.js'); ?>" crossorigin="anonymous">
+    <link rel="stylesheet" href="<?php echo $this->url->get('css/bootstrap.min.css'); ?>">
     <link rel="shortcut icon" type="image/x-icon" href="<?php echo $this->url->get('img/favicon.ico'); ?>"/>
 </head>
 <body>
@@ -21,9 +21,9 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
             <?php if ($this->session->has("id_user") and $this->session->get("id_role") == 1): ?>
-                <a class="nav-item nav-link" href="index/workroom">Карточки</a>
+                <a class="nav-item nav-link" href="/index/workroom">Карточки</a>
                 <a class="nav-item nav-link" href="#">Отпуска</a>
-                <a class="nav-item nav-link" href="#">Приказы</a>
+                <a class="nav-item nav-link" href="/orders">Приказы</a>
                 <a class="nav-item nav-link" href="#">Формы</a>
                 <a class="nav-item nav-link" href="#">Документы</a>
                 <a class="nav-item nav-link" href="#">Списки</a>

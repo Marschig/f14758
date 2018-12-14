@@ -3,7 +3,6 @@
 .idea/
 .phalcon/
 app/library/
-app/views/layouts/
 public/files/
 public/img/
 public/temp/

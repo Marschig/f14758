@@ -1,6 +1,6 @@
 <?php
 
-class UserRoles extends \Phalcon\Mvc\Model
+class Professions extends \Phalcon\Mvc\Model
 {
 
     /**
@@ -14,17 +14,10 @@ class UserRoles extends \Phalcon\Mvc\Model
 
     /**
      *
-     * @var integer
-     * @Column(column="uid", type="integer", length=11, nullable=false)
+     * @var string
+     * @Column(column="name", type="string", length=255, nullable=false)
      */
-    public $uid;
-
-    /**
-     *
-     * @var integer
-     * @Column(column="rid", type="integer", length=11, nullable=false)
-     */
-    public $rid;
+    public $name;
 
     /**
      * Initialize method for model.
@@ -32,16 +25,25 @@ class UserRoles extends \Phalcon\Mvc\Model
     public function initialize()
     {
         $this->setSchema("security_app_db");
-        $this->setSource("user_roles");
-        $this->belongsTo('uid', '\Users', 'id', ['alias' => 'Users']);
-        $this->belongsTo('rid', '\Roles', 'id', ['alias' => 'Roles']);
+        $this->setSource("professions");
+        $this->hasMany('id', 'Users', 'pid', ['alias' => 'Users']);
+    }
+
+    /**
+     * Returns table name mapped in the model.
+     *
+     * @return string
+     */
+    public function getSource()
+    {
+        return 'professions';
     }
 
     /**
      * Allows to query a set of records that match the specified conditions
      *
      * @param mixed $parameters
-     * @return UserRoles[]|UserRoles|\Phalcon\Mvc\Model\ResultSetInterface
+     * @return Professions[]|Professions|\Phalcon\Mvc\Model\ResultSetInterface
      */
     public static function find($parameters = null)
     {
@@ -52,7 +54,7 @@ class UserRoles extends \Phalcon\Mvc\Model
      * Allows to query the first record that match the specified conditions
      *
      * @param mixed $parameters
-     * @return UserRoles|\Phalcon\Mvc\Model\ResultInterface
+     * @return Professions|\Phalcon\Mvc\Model\ResultInterface
      */
     public static function findFirst($parameters = null)
     {
@@ -69,19 +71,8 @@ class UserRoles extends \Phalcon\Mvc\Model
     {
         return [
             'id' => 'id',
-            'uid' => 'uid',
-            'rid' => 'rid'
+            'name' => 'name'
         ];
-    }
-
-    /**
-     * Returns table name mapped in the model.
-     *
-     * @return string
-     */
-    public function getSource()
-    {
-        return 'user_roles';
     }
 
 }

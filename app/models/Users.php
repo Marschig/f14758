@@ -15,7 +15,7 @@ class Users extends \Phalcon\Mvc\Model
     /**
      *
      * @var integer
-     * @Column(column="tnumber", type="integer", length=11, nullable=false)
+     * @Column(column="t_number", type="integer", length=11, nullable=false)
      */
     public $t_number;
 
@@ -34,6 +34,97 @@ class Users extends \Phalcon\Mvc\Model
     public $pass;
 
     /**
+     *
+     * @var integer
+     * @Column(column="reg_number", type="integer", length=11, nullable=false)
+     */
+    public $reg_number;
+
+    /**
+     *
+     * @var integer
+     * @Column(column="identity_code", type="integer", length=11, nullable=false)
+     */
+    public $identity_code;
+
+    /**
+     *
+     * @var string
+     * @Column(column="gender", type="string", length=50, nullable=false)
+     */
+    public $gender;
+
+    /**
+     *
+     * @var string
+     * @Column(column="birth_date", type="string", nullable=false)
+     */
+    public $birth_date;
+
+    /**
+     *
+     * @var string
+     * @Column(column="date_rec", type="string", nullable=false)
+     */
+    public $date_rec;
+
+    /**
+     *
+     * @var integer
+     * @Column(column="oid_rec", type="integer", length=11, nullable=false)
+     */
+    public $oid_rec;
+
+    /**
+     *
+     * @var integer
+     * @Column(column="pid", type="integer", length=11, nullable=false)
+     */
+    public $pid;
+
+    /**
+     *
+     * @var integer
+     * @Column(column="aid", type="integer", length=11, nullable=false)
+     */
+    public $aid;
+
+    /**
+     *
+     * @var integer
+     * @Column(column="cid", type="integer", length=11, nullable=false)
+     */
+    public $cid;
+
+    /**
+     *
+     * @var string
+     * @Column(column="date_dis", type="string", nullable=true)
+     */
+    public $date_dis;
+
+    /**
+     *
+     * @var string
+     * @Column(column="cause_dis", type="string", length=255, nullable=true)
+     */
+    public $cause_dis;
+
+    /**
+     *
+     * @var integer
+     * @Column(column="oid_dis", type="integer", length=11, nullable=true)
+     */
+    public $oid_dis;
+
+    /**
+     *
+     * @var integer
+     * @Column(column="status", type="integer", length=11, nullable=false)
+     */
+    public $status;
+
+    /**
      * Initialize method for model.
      */
     public function initialize()
@@ -41,6 +132,22 @@ class Users extends \Phalcon\Mvc\Model
         $this->setSchema("security_app_db");
         $this->setSource("users");
         $this->hasMany('id', 'UserRoles', 'uid', ['alias' => 'UserRoles']);
+        $this->belongsTo('oid_rec', '\Orders', 'id', ['alias' => 'Orders']);
+        $this->belongsTo('pid', '\Professions', 'id', ['alias' => 'Professions']);
+        $this->belongsTo('aid', '\Areas', 'id', ['alias' => 'Areas']);
+        $this->belongsTo('cid', '\Categories', 'id', ['alias' => 'Categories']);
+        $this->belongsTo('oid_dis', '\Orders', 'id', ['alias' => 'Orders']);
+        $this->belongsTo('status', '\Status', 'id', ['alias' => 'Status']);
+    }
+
+    /**
+     * Returns table name mapped in the model.
+     *
+     * @return string
+     */
+    public function getSource()
+    {
+        return 'users';
     }
 
     /**
@@ -75,20 +182,23 @@ class Users extends \Phalcon\Mvc\Model
     {
         return [
             'id' => 'id',
-            'fio' => 'fio',
             't_number' => 't_number',
-            'pass' => 'pass'
+            'fio' => 'fio',
+            'pass' => 'pass',
+            'reg_number' => 'reg_number',
+            'identity_code' => 'identity_code',
+            'gender' => 'gender',
+            'birth_date' => 'birth_date',
+            'date_rec' => 'date_rec',
+            'oid_rec' => 'oid_rec',
+            'pid' => 'pid',
+            'aid' => 'aid',
+            'cid' => 'cid',
+            'date_dis' => 'date_dis',
+            'cause_dis' => 'cause_dis',
+            'oid_dis' => 'oid_dis',
+            'status' => 'status'
         ];
-    }
-
-    /**
-     * Returns table name mapped in the model.
-     *
-     * @return string
-     */
-    public function getSource()
-    {
-        return 'users';
     }
 
 }

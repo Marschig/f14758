@@ -1,0 +1,236 @@
+<?php
+/**
+ * @var \Phalcon\Mvc\View\Engine\Php $this
+ */
+?>
+
+<div class="page-header" style="margin-top: 50px">
+    <h1>
+        Редактирование карточки
+    </h1>
+</div>
+
+<?php
+
+echo $this->flash->output();
+
+
+echo $this->tag->form(
+    array(
+        "users/save",
+        "autocomplete" => "off",
+    )
+);
+?>
+
+<hr>
+
+<div class="form-group row">
+    <label for="fieldFio" class="col-sm-2 col-form-label">Табельный номер</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["t_number", "size" => 30, "class" => "form-control", "id" => "fieldFio", "disabled" => 1]) ?>
+    </div>
+</div>
+
+
+<div class="form-group row">
+    <label for="fieldFio" class="col-sm-2 col-form-label">ФИО</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["fio", "size" => 30, "class" => "form-control", "id" => "fieldFio"]) ?>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="fieldNewPass" class="col-sm-2 col-form-label">Новый пароль</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->passwordField(["new_pass", "size" => 30, "class" => "form-control disable", "id" => "fieldNewPass"]) ?>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="fieldRegNumber" class="col-sm-2 col-form-label">Регистрационный номер</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->numericField(["reg_number", "type" => "number", "class" => "form-control", "id" => "fieldRegNumber"]) ?>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="fieldIdentityCode" class="col-sm-2 col-form-label">Идентификационный код</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->numericField(["identity_code", "type" => "number", "class" => "form-control", "id" => "fieldIdentityCode"]) ?>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="fieldGender" class="col-sm-2 col-form-label">Пол</label>
+    <div class="col-sm-10">
+
+        <?php //echo $this->tag->textField(["gender", "size" => 30, "class" => "form-control", "id" => "fieldGender"]) ?>
+        <?php echo $this->tag->select(
+            array(
+                "gender",
+                ["Мужской" => "Мужской", "Женский" => "Женский"],
+//                "using" => array("id", "name"),
+                "required" => "",
+                "class" => "form-control",
+                "id" => "fieldGender"
+            )
+        );
+        ?>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="fieldBirthDate" class="col-sm-2 col-form-label">Дата рождения</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["birth_date", "type" => "date", "class" => "form-control", "id" => "fieldBirthDate", "placeholder" => "Формат: 2018-12-21"]) ?>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="fieldDateRec" class="col-sm-2 col-form-label">Дата приема</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["date_rec", "type" => "date", "class" => "form-control", "id" => "fieldDateRec", "placeholder" => "Формат: 2018-12-21"]) ?>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="fieldOidRec" class="col-sm-2 col-form-label">Приказ на прием</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->select(
+            array(
+                "oid_rec",
+                Orders::find(),
+                "using" => array("id", "number"),
+                "required" => "",
+                "class" => "form-control",
+                "id" => "fieldOidRec"
+            )
+        );
+        ?>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="fieldPid" class="col-sm-2 col-form-label">Профессия</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->select(
+            array(
+                "pid",
+                Professions::find(),
+                "using" => array("id", "name"),
+                "required" => "",
+                "class" => "form-control",
+                "id" => "fieldPid"
+            )
+        );
+        ?>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="fieldAid" class="col-sm-2 col-form-label">Участок</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->select(
+            array(
+                "aid",
+                Areas::find(),
+                "using" => array("id", "name"),
+                "required" => "",
+                "class" => "form-control",
+                "id" => "fieldAid"
+            )
+        );
+        ?>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="fieldCid" class="col-sm-2 col-form-label">Разряд</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->select(
+            array(
+                "cid",
+                Categories::find(),
+                "using" => array("id", "name"),
+                "required" => "",
+                "class" => "form-control",
+                "id" => "fieldCid"
+            )
+        );
+        ?>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="fieldDateDis" class="col-sm-2 col-form-label">Дата увольнения</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["date_dis", "type" => "date", "class" => "form-control", "id" => "fieldDateDis", "placeholder" => "Формат: 2018-12-21"]) ?>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="fieldCauseDis" class="col-sm-2 col-form-label">Основания увольнения</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["cause_dis", "size" => 30, "class" => "form-control", "id" => "fieldCauseDis"]) ?>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="fieldOidDis" class="col-sm-2 col-form-label">Приказ на увольнение</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->select(
+            array(
+                "oid_dis",
+                Orders::find(),
+                "using" => array("id", "number"),
+//                "required" => "",
+                "class" => "form-control",
+                "id" => "fieldOidDis",
+                'useEmpty' => true,
+                'emptyText' => 'Выберите приказ',
+            )
+        );
+        ?>
+    </div>
+</div>
+
+<!--<div class="form-group row">-->
+<!--    <label for="fieldStatus" class="col-sm-2 col-form-label">Статус</label>-->
+<!--    <div class="col-sm-10">-->
+<!--        --><?php //echo $this->tag->select(
+//            array(
+//                "status",
+//                Status::find(),
+//                "using" => array("id", "name"),
+//                "required" => "",
+//                "class" => "form-control",
+//                "id" => "fieldStatus"
+//            )
+//        );
+//        ?>
+<!--    </div>-->
+<!--</div>-->
+
+
+<?php echo $this->tag->hiddenField("id") ?>
+
+<div class="form-group  row">
+    <div class="col-sm-offset-2 col-sm-10">
+
+        <?php if($status == 1): ?>
+
+        <?php echo $this->tag->submitButton(["Сохранить", "class" => "btn btn-default"]) ?>
+        <?php echo $this->tag->linkTo(array('/index/workroom/', 'Отменить', 'class' => 'btn btn-warning', 'role' => 'button')) ?>
+        <?php echo $this->tag->linkTo(array('/users/delete/'.$id, 'Удалить', 'class' => 'btn btn-danger', 'role' => 'button')) ?>
+        <?php echo $this->tag->linkTo(array('/index/workroom/', 'Выход', 'class' => 'btn btn-primary', 'role' => 'button')) ?>
+
+        <?php else: ?>
+
+        <?php echo $this->tag->linkTo(array('/users/restore/'.$id, 'Восстановить', 'class' => 'btn btn-danger', 'role' => 'button')) ?>
+
+        <?php endif; ?>
+    </div>
+</div>
+
+<?php echo $this->tag->endForm(); ?>

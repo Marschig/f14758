@@ -6,12 +6,16 @@ class Roles extends \Phalcon\Mvc\Model
     /**
      *
      * @var integer
+     * @Primary
+     * @Identity
+     * @Column(column="id", type="integer", length=11, nullable=false)
      */
     public $id;
 
     /**
      *
      * @var string
+     * @Column(column="name", type="string", length=255, nullable=false)
      */
     public $name;
 
@@ -23,16 +27,6 @@ class Roles extends \Phalcon\Mvc\Model
         $this->setSchema("security_app_db");
         $this->setSource("roles");
         $this->hasMany('id', 'UserRoles', 'rid', ['alias' => 'UserRoles']);
-    }
-
-    /**
-     * Returns table name mapped in the model.
-     *
-     * @return string
-     */
-    public function getSource()
-    {
-        return 'roles';
     }
 
     /**
@@ -69,6 +63,16 @@ class Roles extends \Phalcon\Mvc\Model
             'id' => 'id',
             'name' => 'name'
         ];
+    }
+
+    /**
+     * Returns table name mapped in the model.
+     *
+     * @return string
+     */
+    public function getSource()
+    {
+        return 'roles';
     }
 
 }
