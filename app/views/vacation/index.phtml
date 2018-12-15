@@ -1,0 +1,108 @@
+<?php
+/**
+ * @var \Phalcon\Mvc\View\Engine\Php $this
+ */
+?>
+
+<div class="page-header" style="margin-top: 50px">
+    <h1>
+        Поиск по отпускам
+    </h1>
+    <p>
+        <?php echo $this->tag->linkTo(["vacation/new", "Добавить отпуск"]) ?>
+    </p>
+</div>
+
+<?php
+
+echo $this->flash->output();
+
+echo $this->tag->form(
+    [
+        "vacation/search",
+        "autocomplete" => "off",
+    ]
+);
+?>
+
+<hr>
+
+<div class="form-group row">
+    <label for="fieldUid" class="col-sm-2 col-form-label">Регистрационный номер работника</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->select(
+            array(
+                "uid",
+                Users::find(),
+                "using" => array("id", "reg_number"),
+                "class" => "form-control",
+                "id" => "fieldUid",
+                'useEmpty' => true,
+                'emptyText' => 'Выберите работника',
+            )
+        );
+        ?>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="fieldType" class="col-sm-2 col-form-label">Тип отпуска</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["type", "size" => 30, "class" => "form-control", "id" => "fieldType"]) ?>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="fieldCountDay" class="col-sm-2 col-form-label">Кол-во дней</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["count_day", "size" => 30, "class" => "form-control", "id" => "fieldCountDay"]) ?>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="fieldDateStart" class="col-sm-2 col-form-label">Дата начала</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["date_start", "size" => 30, "class" => "form-control", "id" => "fieldDateStart", "placeholder" => "Формат: 2018-12-21"]) ?>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="fieldDateEnd" class="col-sm-2 col-form-label">Дата окончания</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["date_end", "size" => 30, "class" => "form-control", "id" => "fieldDateEnd", "placeholder" => "Формат: 2018-12-21"]) ?>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="fieldOid" class="col-sm-2 col-form-label">Приказ</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->select(
+            array(
+                "oid",
+                Orders::find(),
+                "using" => array("id", "number"),
+//                "required" => "",
+                "class" => "form-control",
+                "id" => "fieldOid",
+                'useEmpty' => true,
+                'emptyText' => 'Выберите приказ',
+            )
+        );
+        ?>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="fieldNote" class="col-sm-2 col-form-label">Примечания</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["note", "size" => 30, "class" => "form-control", "id" => "fieldNote"]) ?>
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <?php echo $this->tag->submitButton(["Поиск", "class" => "btn btn-default"]) ?>
+    </div>
+</div>
+
+<?php echo $this->tag->endForm(); ?>

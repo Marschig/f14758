@@ -52,5 +52,28 @@
             </div>
         </div>
     </div>
+
+    <div class="clearfix"></div>
+
+    <div class="col-md-12">
+        <div class="card">
+            <h5 class="card-header">Отпуска</h5>
+            <div class="card-body">
+
+                <?php
+                foreach ($vacations as $vacation):
+                    ?>
+                    <p class="card-text"><b>Вид отпуска: </b><?php echo $vacation->type; ?></p>
+                    <p class="card-text"><b>Кол-во дней: </b><?php echo $vacation->count_day; ?></p>
+                    <p class="card-text"><b>Дата начала: </b><?php echo $vacation->date_start; ?></p>
+                    <p class="card-text"><b>Дата окончания: </b><?php echo $vacation->date_end; ?></p>
+                    <p class="card-text"><b>№ приказа: </b><?php echo $vacation->getOrders()->number; ?></p>
+                    <p class="card-text"><b>Примечания: </b><?php echo $vacation->note; ?></p>
+                    <hr>
+
+                <?php endforeach;?>
+            </div>
+        </div>
+    </div>
 </div>
 

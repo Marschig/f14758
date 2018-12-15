@@ -348,6 +348,7 @@ class UsersController extends ControllerBase
 
         $this->view->user = $user;
         $this->view->transfers = Transfers::findByUid($user->id);
+        $this->view->vacations = Vacation::findByUid($user->id);
 
 
     }

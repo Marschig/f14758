@@ -1,0 +1,44 @@
+<?php
+/**
+ * @var \Phalcon\Mvc\View\Engine\Php $this
+ */
+?>
+
+<?php use Phalcon\Tag; ?>
+
+<div class="page-header" style="margin-top: 50px">
+    <h1>
+        Результаты поиска
+    </h1>
+</div>
+
+<?php
+
+echo $this->flash->output();
+
+?>
+
+<div class="row">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+            <th>Дата</th>
+            <th>Название</th>
+
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($page->items as $holiday): ?>
+            <tr>
+            <td><?php echo $holiday->date ?></td>
+            <td><?php echo $holiday->name ?></td>
+
+                <td><?php echo $this->tag->linkTo(["holidays/edit/" . $holiday->id, 'class' => 'btn btn-warning', "Редактировать"]); ?></td>
+                <td><?php echo $this->tag->linkTo(["holidays/delete/" . $holiday->id, 'class' => 'btn btn-danger', "Удалить"]); ?></td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
