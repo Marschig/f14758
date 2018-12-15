@@ -6,6 +6,20 @@ use Phalcon\Paginator\Adapter\Model as Paginator;
 
 class OrdersController extends ControllerBase
 {
+
+    public function initialize()
+    {
+
+        if(!$this->session->has("id_user") and $this->session->get("id_role") != 1){
+            $this->dispatcher->forward(
+                [
+                    "controller" => "index",
+                    "action" => "index",
+                ]
+            );
+        }
+
+    }
     /**
      * Index action
      */
