@@ -132,11 +132,11 @@ class Users extends \Phalcon\Mvc\Model
         $this->setSchema("security_app_db");
         $this->setSource("users");
         $this->hasMany('id', 'UserRoles', 'uid', ['alias' => 'UserRoles']);
-        $this->belongsTo('oid_rec', '\Orders', 'id', ['alias' => 'Orders']);
+        $this->belongsTo('oid_rec', '\Orders', 'id', ['alias' => 'OrdersR']);
         $this->belongsTo('pid', '\Professions', 'id', ['alias' => 'Professions']);
         $this->belongsTo('aid', '\Areas', 'id', ['alias' => 'Areas']);
         $this->belongsTo('cid', '\Categories', 'id', ['alias' => 'Categories']);
-        $this->belongsTo('oid_dis', '\Orders', 'id', ['alias' => 'Orders']);
+        $this->belongsTo('oid_dis', '\Orders', 'id', ['alias' => 'OrdersD']);
         $this->belongsTo('status', '\Status', 'id', ['alias' => 'Status']);
     }
 

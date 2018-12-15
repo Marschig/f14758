@@ -8,7 +8,7 @@
 <?php if (isset($user_role_1)): ?>
 
     <?php echo $this->tag->linkTo(array('/users/new', 'Добавить новую карточку', 'class' => 'btn btn-success', 'role' => 'button')); ?>
-    <?php echo $this->tag->linkTo(array('/users/index', 'Поиск', 'class' => 'btn btn-success', 'role' => 'button')); ?>
+    <?php echo $this->tag->linkTo(array('/users/index', 'Поиск', 'class' => 'btn btn-primary', 'role' => 'button')); ?>
     <hr>
 
     <table class="table table-hover">
@@ -19,6 +19,7 @@
             <th scope="col">ФИО</th>
             <th scope="col">Роли</th>
             <th scope="col">Пароль</th>
+            <th scope="col">Просмотр</th>
             <th scope="col">Редактировать</th>
         </tr>
         </thead>
@@ -42,7 +43,8 @@
             }
             echo "</td>";
             echo "<td>***</td>";
-            echo "<td>" . $this->tag->linkTo(array('/users/edit/' . $user->id, 'Редактировать', 'class' => 'btn btn-success', 'role' => 'button')) . "</td>";
+            echo "<td>" . $this->tag->linkTo(array('/users/show/' . $user->id, 'Просмотр', 'class' => 'btn btn-success', 'role' => 'button')) . "</td>";
+            echo "<td>" . $this->tag->linkTo(array('/users/edit/' . $user->id, 'Редактировать', 'class' => 'btn btn-warning', 'role' => 'button')) . "</td>";
             echo "</tr>";
         }
 

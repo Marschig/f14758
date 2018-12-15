@@ -1,0 +1,87 @@
+<?php
+/**
+ * @var \Phalcon\Mvc\View\Engine\Php $this
+ */
+?>
+
+<div class="page-header" style="margin-top: 50px">
+    <h1>
+        Поиск перевода
+    </h1>
+    <p>
+        <?php echo $this->tag->linkTo(["transfers/new", "Добавить перевод"]) ?>
+    </p>
+</div>
+
+<?php
+
+echo $this->flash->output();
+
+echo $this->tag->form(
+    [
+        "transfers/search",
+        "autocomplete" => "off",
+    ]
+);
+?>
+
+<hr>
+
+<div class="form-group row">
+    <label for="fieldUid" class="col-sm-2 col-form-label">Регистрационный номер работника</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->select(
+            array(
+                "uid",
+                Users::find(),
+                "using" => array("id", "reg_number"),
+                "class" => "form-control",
+                "id" => "fieldUid",
+                'useEmpty' => true,
+                'emptyText' => 'Выберите работника',
+            )
+        );
+        ?>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="fieldDate" class="col-sm-2 col-form-label">Дата</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["date", "type" => "date", "class" => "form-control", "id" => "fieldDate", "placeholder" => "Формат: 2018-12-21"]) ?>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="fieldSalary" class="col-sm-2 col-form-label">Оклад</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->textField(["salary", "type" => "date", "class" => "form-control", "id" => "fieldSalary"]) ?>
+    </div>
+</div>
+
+<div class="form-group row">
+    <label for="fieldCause" class="col-sm-2 col-form-label">Причина</label>
+    <div class="col-sm-10">
+        <?php echo $this->tag->select(
+            array(
+                "cause",
+                TransferCause::find(),
+                "using" => array("id", "name"),
+                "class" => "form-control",
+                "id" => "fieldCause",
+                'useEmpty' => true,
+                'emptyText' => 'Выберите приказ',
+            )
+        );
+        ?>
+    </div>
+</div>
+
+
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <?php echo $this->tag->submitButton(["Поиск", "class" => "btn btn-default"]) ?>
+    </div>
+</div>
+
+<?php echo $this->tag->endForm(); ?>

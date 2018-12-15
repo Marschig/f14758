@@ -1,0 +1,56 @@
+<div class="page-header" style="margin-top: 50px">
+    <h1>
+        Просмотр карточки
+    </h1>
+</div>
+
+<?php echo $this->flash->output(); ?>
+
+<hr>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <h5 class="card-header"><?php echo $user->fio; ?></h5>
+            <div class="card-body">
+                <p class="card-text"><b>Табельный номер: </b><?php echo $user->t_number; ?></p>
+                <p class="card-text"><b>Регистрационный номер: </b><?php echo $user->reg_number; ?></p>
+                <p class="card-text"><b>Идентификационный код: </b><?php echo $user->identity_code; ?></p>
+                <p class="card-text"><b>Пол: </b><?php echo $user->gender; ?></p>
+                <p class="card-text"><b>Дата рождения: </b><?php echo $user->birth_date; ?></p>
+                <p class="card-text"><b>Дата приема: </b><?php echo $user->date_rec; ?></p>
+                <p class="card-text"><b>Приказ на прием: </b><?php echo $user->getOrdersR()->number; ?></p>
+                <p class="card-text"><b>Профессия: </b><?php echo $user->getProfessions()->name; ?></p>
+                <p class="card-text"><b>Участок: </b><?php echo $user->getAreas()->name; ?></p>
+                <p class="card-text"><b>Разряд: </b><?php echo $user->getCategories()->name; ?></p>
+                <p class="card-text"><b>Дата увольнения: </b><?php echo $user->date_dis; ?></p>
+                <p class="card-text"><b>Приказ на увольнение: </b><?php echo $user->getOrdersD()->number; ?></p>
+                <p class="card-text"><b>Причина увольнения: </b><?php echo $user->cause_dis; ?></p>
+                <p class="card-text"><b>Статус: </b><?php echo $user->getStatus()->name; ?></p>
+                <?php echo $this->tag->linkTo(array('/users/edit/' . $user->id, 'Редактировать', 'class' => 'btn btn-warning', 'role' => 'button')); ?>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card">
+            <h5 class="card-header">Переводы</h5>
+            <div class="card-body">
+
+                <?php
+                foreach ($transfers as $transfer):
+                ?>
+                <p class="card-text"><b>Дата: </b><?php echo $transfer->date; ?></p>
+                <p class="card-text"><b>Профессия: </b><?php echo $transfer->getProfessions()->name; ?></p>
+                <p class="card-text"><b>Участок: </b><?php echo $transfer->getAreas()->name; ?></p>
+                <p class="card-text"><b>Разряд: </b><?php echo $transfer->getCategories()->name; ?></p>
+                <p class="card-text"><b>Оклад: </b><?php echo $transfer->salary; ?></p>
+                <p class="card-text"><b>№ приказа: </b><?php echo $transfer->getOrders()->number; ?></p>
+                <p class="card-text"><b>Причина: </b><?php echo $transfer->getTransferCause()->name; ?></p>
+                <hr>
+
+                <?php endforeach;?>
+            </div>
+        </div>
+    </div>
+</div>
+

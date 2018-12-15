@@ -9,7 +9,7 @@ class UsersController extends ControllerBase
     public function initialize()
     {
 
-        if(!$this->session->has("id_user") and $this->session->get("id_role") != 1){
+        if(!$this->session->has("id_user") or $this->session->get("id_role") != 1){
             $this->dispatcher->forward(
                 [
                     "controller" => "index",
@@ -330,6 +330,26 @@ class UsersController extends ControllerBase
             'controller' => "index",
             'action' => "workroom"
         ]);
+    }
+
+    public function showAction($id)
+    {
+        $user = Users::findFirstByid($id);
+        if (!$user) {
+            $this->flash->error("Карточка не найдена");
+
+            $this->dispatcher->forward([
+                'controller' => "index",
+                'action' => 'workroom'
+            ]);
+
+            return;
+        }
+
+        $this->view->user = $user;
+        $this->view->transfers = Transfers::findByUid($user->id);
+
+
     }
 
 }

@@ -10,7 +10,7 @@ class OrdersController extends ControllerBase
     public function initialize()
     {
 
-        if(!$this->session->has("id_user") and $this->session->get("id_role") != 1){
+        if(!$this->session->has("id_user") or $this->session->get("id_role") != 1){
             $this->dispatcher->forward(
                 [
                     "controller" => "index",
